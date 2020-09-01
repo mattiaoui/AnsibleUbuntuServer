@@ -55,7 +55,7 @@
   - name: Copy Banner file
     become: yes
     copy:
-      src: /_Mattia/AnsibleFile/issue.net
+      src: /AnsibleUbuntuServer/AnsibleFile/issue.net
       dest: /etc/issue.net
       owner: root
       group: root

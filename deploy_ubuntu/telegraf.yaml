@@ -40,7 +40,7 @@
   - name: Copy Telegraf.conf File to Root Telegraf Folder
     become: yes
     copy:
-      src: /AnsibleFile/telegraf/telegraf/telegraf.conf
+      src: /AnsibleUbuntuServer/AnsibleFile/telegraf/telegraf/telegraf.conf
       dest: /etc/telegraf/telegraf.conf
       owner: telegraf
       group: telegraf
@@ -49,7 +49,7 @@
   - name: Copy Telegraf.conf File on my Folder
     become: yes
     copy:
-      src: /AnsibleFile/telegraf/telegraf/telegraf.d.available/telegraf.conf
+      src: /AnsibleUbuntuServer/AnsibleFile/telegraf/telegraf/telegraf.d.available/telegraf.conf
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
@@ -58,7 +58,7 @@
   - name: Copy Telegraf File on work dir
     become: yes
     copy:
-      src: /AnsibleFile/telegraf/telegraf/telegraf.d.available/vmware.conf
+      src: /AnsibleUbuntuServer/AnsibleFile/telegraf/telegraf/telegraf.d.available/vmware.conf
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
