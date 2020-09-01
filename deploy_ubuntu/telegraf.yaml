@@ -26,25 +26,30 @@
       path: /etc/telegraf/telegraf.conf
       state: absent
 
+  - name: Delete Original Telegraf Sample File
+    file:
+      path: /etc/telegraf/telegraf.conf.sample
+      state: absent
+
   - name: Create Dir under /etc/telegraf
     become: yes
     file:
       path: /etc/telegraf/telegraf.d.available
       state: directory
 
-  - name: Copy Telegraf.conf File
+  - name: Copy Telegraf.conf File to Root Telegraf Folder
     become: yes
     copy:
-      src: ../../AnsibleFile/telegraf/telegraf/telegraf.conf
+      src: /_Mattia/AnsibleFile/telegraf/telegraf/telegraf.conf
       dest: /etc/telegraf/telegraf.conf
       owner: telegraf
       group: telegraf
       mode: '0644'
 
-  - name: Copy Telegraf.conf File
+  - name: Copy Telegraf.conf File on my Folder
     become: yes
     copy:
-      src: .../../AnsibleFile/telegraf/telegraf/telegraf.d.available/telegraf.conf
+      src: /_Mattia/AnsibleFile/telegraf/telegraf/telegraf.d.available/telegraf.conf
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
@@ -53,11 +58,19 @@
   - name: Copy Telegraf File on work dir
     become: yes
     copy:
-      src: ../../AnsibleFile/telegraf/telegraf/telegraf.d.available/vmware.conf
+      src: /_Mattia/AnsibleFile/telegraf/telegraf/telegraf.d.available/vmware.conf
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
       mode: '0755'
+
+  - name: Link file to telegraf dir
+    become: yes
+    file:
+      src: /etc/telegraf/telegraf.d.available/telegraf.conf
+      dest: /etc/telegraf/telegraf.d/telegraf.conf
+      state: link
+      force: yes
 
   - name: Link file to telegraf dir
     become: yes

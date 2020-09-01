@@ -1,6 +1,11 @@
 ##AnsibleFile Base Configuration
+##AnsibleFile Configuration file for Ubuntu Server
 - hosts: ubuntu
-  gather_facts: no
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
   vars:
     vm_shell:
             /bin/echo echo "alias disk='df -h'" >> ~/.bashrc
