@@ -1,6 +1,6 @@
 ##AnsibleFile Base Configuration
 ##AnsibleFile Configuration file for Ubuntu Server
-- hosts: ubuntu
+- hosts: oracle-ubuntu
   become: yes
   become_method: sudo
   become_user: root
@@ -26,6 +26,7 @@
             /bin/echo echo "alias influxdb='docker exec -it influxdb influx'"     >> ~/.bashrc
             source ~/.bashrc
 
+#Create folder for docker
   tasks:
   - name: Create Docker Compose Folder
     become: yes
@@ -44,3 +45,18 @@
     file:
       path: /GitClone
       state: directory
+
+#Setting SSH Banner
+  - name: Delete Original issue File
+    file:
+      path: /etc/issue.net
+      state: absent
+
+  - name: Copy Banner file
+    become: yes
+    copy:
+      src: /_Mattia/AnsibleFile/issue.net
+      dest: /etc/issue.net
+      owner: root
+      group: root
+      mode: '0644'
