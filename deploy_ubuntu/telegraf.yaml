@@ -1,5 +1,5 @@
 ##AnsibleFile Mattia
-- hosts: ubuntu
+- hosts: oracle-ubuntu
 
   tasks:
   - name: Add Telegraf Key
@@ -26,25 +26,25 @@
       path: /etc/telegraf/telegraf.conf
       state: absent
 
-  - name: Copy Telegraf.conf root File
-    become: yes
-    copy:
-      src: /AnsibleFile/telegraf/telegraf.conf
-      dest: /etc/telegraf/telegraf.conf
-      owner: telegraf
-      group: telegraf
-      mode: '0644'
-
   - name: Create Dir under /etc/telegraf
     become: yes
     file:
       path: /etc/telegraf/telegraf.d.available
       state: directory
 
-  - name: Copy Telegraf File on work dir
+  - name: Copy Telegraf.conf File
     become: yes
     copy:
-      src: /AnsibleFile/telegraf/unifi.conf
+      src: ../../AnsibleFile/telegraf/telegraf/telegraf.conf
+      dest: /etc/telegraf/telegraf.conf
+      owner: telegraf
+      group: telegraf
+      mode: '0644'
+
+  - name: Copy Telegraf.conf File
+    become: yes
+    copy:
+      src: .../../AnsibleFile/telegraf/telegraf/telegraf.d.available/telegraf.conf
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
@@ -53,24 +53,17 @@
   - name: Copy Telegraf File on work dir
     become: yes
     copy:
-      src: /AnsibleFile/telegraf/vmware.conf
+      src: ../../AnsibleFile/telegraf/telegraf/telegraf.d.available/vmware.conf
       dest: /etc/telegraf/telegraf.d.available/
-      owner: root
-      group: root
+      owner: telegraf
+      group: telegraf
       mode: '0755'
-
-
-  - name: Create Dir under /etc/telegraf
-    become: yes
-    file:
-      path: /etc/telegraf/telegraf.d
-      state: directory
 
   - name: Link file to telegraf dir
     become: yes
     file:
-      src: /etc/telegraf/telegraf.d.available/unifi.conf
-      dest: /etc/telegraf/telegraf.d/unifi.conf
+      src: /etc/telegraf/telegraf.d.available/vmware.conf
+      dest: /etc/telegraf/telegraf.d/vmware.conf
       state: link
       force: yes
 
