@@ -85,10 +85,4 @@
         name: netdata
         state: started
 
-#Reboot Server
-    - name: Reboot Remote Server.
-      reboot:
-            post_reboot_delay: 10
-            reboot_timeout: 40
-            connect_timeout: 60
-            test_command: uptime
+

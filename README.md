@@ -10,24 +10,6 @@ Git Repository with Ansible script to configure Ubuntu Server whit this Settings
 Download git repository "git clone https://github.com/mattiaoui/AnsibleUbuntuServer"
 #
 #
-.<br>
-└── AnsibleUbuntuServer<br>
-    ├── AnsibleFile<br>
-    │   └── telegraf<br>
-    │       ├── telegraf.conf<br>
-    │       ├── telegraf.d<br>
-    │       └── telegraf.d.available<br>
-    │           ├── telegraf.conf<br>
-    │           └── vmware.conf<br>
-    ├── deploy_all<br>
-    │   └── base_config.yaml<br>
-    ├── deploy_ubuntu<br>
-    │   ├── new_server.yaml<br>
-    │   └── telegraf.yaml<br>
-    ├── hostgroup<br>
-    │   └── hosts<br>
-    └── ScriptUbuntu.sh<br>
-
 #
 The 'ScriptUbuntu.sh' execute all configuration.
 Before run go to hostgroup and edit host file with your settings.

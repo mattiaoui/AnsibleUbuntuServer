@@ -1,0 +1,16 @@
+##AnsibleFile Configuration file for Ubuntu Server
+- hosts: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+
+  tasks: 
+#Reboot Server after configuration
+    - name: Reboot Remote Server.
+      reboot:
+            post_reboot_delay: 10
+            reboot_timeout: 40
+            connect_timeout: 60
+            test_command: uptime
