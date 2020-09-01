@@ -7,8 +7,12 @@
   connection: ssh
   vars:
     new_user: oci_manager
+    server_hostname: oci-ubuntu-test-ansible
 
-  tasks:  
+  tasks: 
+#Change server hostname,  change VARS before running
+    - hostname: name={{ server_hostname }}
+
 #Create new user account, change VARS before running
     - name: creating the user {{ new_user }}.
       user:
