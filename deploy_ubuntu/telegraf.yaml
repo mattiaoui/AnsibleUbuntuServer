@@ -62,7 +62,7 @@
       dest: /etc/telegraf/telegraf.d.available/
       owner: telegraf
       group: telegraf
-      mode: '0755'
+      mode: '0644'
 
   - name: Link file to telegraf dir
     become: yes
