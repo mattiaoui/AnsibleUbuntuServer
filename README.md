@@ -9,9 +9,4 @@ Git Repository with Ansible script to configure Ubuntu Server whit this Settings
 - Reboot Server
 
 Download git repository "git clone https://github.com/mattiaoui/AnsibleUbuntuServer"
-#
-#
-#
-The 'ScriptUbuntu.sh' execute all configuration.
-Before run go to hostgroup and edit host file with your settings.
-Edit on telegraf.conf the information about influxdb
+Detail https://wordpress.mmoui.pw/?p=744
