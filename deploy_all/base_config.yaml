@@ -18,7 +18,6 @@
             /bin/echo echo "alias ll='ls -l'"   >> ~/.bashrc
             /bin/echo echo "alias restartelegraf='systemctl restart telegraf && systemctl status telegraf'"   >> ~/.bashrc
             /bin/echo echo "alias telegraflog='tail -f /var/log/telegraf/telegraf.log'"    >> ~/.bashrc
-            /bin/echo echo "alias telegraflog='tail -f /var/log/telegraf/telegraf.log'"    >> ~/.bashrc
             /bin/echo echo "alias influxdb='docker exec -it influxdb influx'"     >> ~/.bashrc
             source ~/.bashrc
 
