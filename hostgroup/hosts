@@ -1,0 +1,2 @@
+[ubuntu]
+158.101.197.48 ansible_user=ubuntu ansible_become=true

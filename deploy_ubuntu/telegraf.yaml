@@ -1,0 +1,88 @@
+##AnsibleFile Mattia
+- hosts: ubuntu
+
+  tasks:
+  - name: Add Telegraf Key
+    apt_key:
+      url: https://repos.influxdata.com/influxdb.key
+      state: present
+
+  - name: Add telegraf repository
+    become: yes
+    apt_repository:
+        repo: deb https://repos.influxdata.com/ubuntu bionic stable
+        state: present
+        filename: influxdb.list
+
+  - name: Install telegraf
+    become: yes
+    apt:
+      name: telegraf
+      update_cache: yes
+      state: latest
+
+  - name: Delete Original Telegraf File
+    file:
+      path: /etc/telegraf/telegraf.conf
+      state: absent
+
+  - name: Copy Telegraf.conf root File
+    become: yes
+    copy:
+      src: /AnsibleFile/telegraf/telegraf.conf
+      dest: /etc/telegraf/telegraf.conf
+      owner: telegraf
+      group: telegraf
+      mode: '0644'
+
+  - name: Create Dir under /etc/telegraf
+    become: yes
+    file:
+      path: /etc/telegraf/telegraf.d.available
+      state: directory
+
+  - name: Copy Telegraf File on work dir
+    become: yes
+    copy:
+      src: /AnsibleFile/telegraf/unifi.conf
+      dest: /etc/telegraf/telegraf.d.available/
+      owner: telegraf
+      group: telegraf
+      mode: '0644'
+
+  - name: Copy Telegraf File on work dir
+    become: yes
+    copy:
+      src: /AnsibleFile/telegraf/vmware.conf
+      dest: /etc/telegraf/telegraf.d.available/
+      owner: root
+      group: root
+      mode: '0755'
+
+
+  - name: Create Dir under /etc/telegraf
+    become: yes
+    file:
+      path: /etc/telegraf/telegraf.d
+      state: directory
+
+  - name: Link file to telegraf dir
+    become: yes
+    file:
+      src: /etc/telegraf/telegraf.d.available/unifi.conf
+      dest: /etc/telegraf/telegraf.d/unifi.conf
+      state: link
+      force: yes
+
+  handlers:
+  - name: Service Enable telegraf
+    become: yes
+    service:
+      name: telegraf
+      enabled: yes
+
+  - name: Service Start telegraf
+    become: yes
+    service:
+      name: telegraf
+      state: started

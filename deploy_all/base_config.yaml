@@ -1,0 +1,42 @@
+##AnsibleFile Base Configuration
+- hosts: ubuntu
+  gather_facts: no
+  vars:
+    vm_shell:
+            /bin/echo echo "alias disk='df -h'" >> ~/.bashrc
+            /bin/echo echo "alias dps='docker ps'" >> ~/.bashrc
+            /bin/echo echo "alias dvs='docker volume ls'" >> ~/.bashrc
+            /bin/echo echo "alias dns='docker network ls'" >> ~/.bashrc
+            /bin/echo echo "alias dis='docker image ls'" >> ~/.bashrc
+            /bin/echo echo "alias dcu='docker-compose up -d'"  >> ~/.bashrc
+            /bin/echo echo "alias ifconfig='ip a s'" >> ~/.bashrc
+            /bin/echo echo "alias dib='docker image build'"  >> ~/.bashrc
+            /bin/echo echo "alias dp='docker push'"  >> ~/.bashrc
+            /bin/echo echo "alias dl='docker logs'"   >> ~/.bashrc
+            /bin/echo echo "alias dsls='docker stack ls'"   >> ~/.bashrc
+            /bin/echo echo "alias restartnamed='systemctl restart named'"   >> ~/.bashrc
+            /bin/echo echo "alias ll='ls -l'"   >> ~/.bashrc
+            /bin/echo echo "alias restartelegraf='systemctl restart telegraf && systemctl status telegraf'"   >> ~/.bashrc
+            /bin/echo echo "alias telegraflog='tail -f /var/log/telegraf/telegraf.log'"    >> ~/.bashrc
+            /bin/echo echo "alias telegraflog='tail -f /var/log/telegraf/telegraf.log'"    >> ~/.bashrc
+            /bin/echo echo "alias influxdb='docker exec -it influxdb influx'"     >> ~/.bashrc
+            source ~/.bashrc
+
+  tasks:
+  - name: Create Docker Compose Folder
+    become: yes
+    file:
+      path: /DockerFile
+      state: directory
+
+  - name: Create Docker Env Folder
+    become: yes
+    file:
+      path: /DockerEnv
+      state: directory
+
+  - name: Create Git Clone Folder
+    become: yes
+    file:
+      path: /GitClone
+      state: directory
