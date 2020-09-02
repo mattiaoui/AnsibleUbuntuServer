@@ -31,32 +31,7 @@
        dest: /etc/fstab
        regexp: swap
        state: absent
-
-#Install Docker Stack
-    - name: Add Docker’s official GPG key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-
-    - name: Add Docker Repository
-      apt_repository:
-            repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-            state: present
-            filename: docker
-            mode: 0600
-
-    - name: Install Docker Engine.
-      apt: 
-         name:
-            - docker-ce
-            - docker-ce-cli
-            - containerd.io
-            - docker-compose
-
-    - name: Enable service docker, and enable persistently
-      service: 
-            name: docker
-            enabled: yes
-
+       
 #Install other application
     - name: Install other application.
       apt: 
