@@ -60,3 +60,32 @@
       owner: root
       group: root
       mode: '0644'
+
+#Replace hosts.allow and hosts.deny file
+  - name: Delete hosts.allow File
+    file:
+      path: /etc/hosts.allow
+      state: absent
+
+  - name: Delete hosts.deny File
+    file:
+      path: /etc/hosts.deny
+      state: absent
+
+  - name: Copy hosts.allow file
+    become: yes
+    copy:
+      src: /AnsibleUbuntuServer/AnsibleFile/hosts.allow
+      dest: /etc/hosts.allow
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Copy hosts.deny file
+    become: yes
+    copy:
+      src: /AnsibleUbuntuServer/AnsibleFile/hosts.deny
+      dest: /etc/hosts.deny
+      owner: root
+      group: root
+      mode: '0644'
