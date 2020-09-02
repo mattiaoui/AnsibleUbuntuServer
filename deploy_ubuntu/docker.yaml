@@ -5,9 +5,6 @@
   become_user: root
   gather_facts: yes
   connection: ssh
-  vars:
-    new_user: oci_manager
-    server_hostname: oci-ubuntu-test-ansible
 
   tasks: 
 #Install Docker Stack
